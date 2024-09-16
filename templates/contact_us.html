@@ -1,0 +1,46 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+  {% block content %}
+  <main id="main">
+    <h2 style="color: brown; text-align: center; margin-top: 20px;">Contact Us</h2>
+
+    <!-- ======= About Us Section ======= -->
+    <section id="contact-us" class="contact-us" style="margin-bottom: 35px;">
+      <div class="container" data-aos="fade-up">
+        <div class="row content" >
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="{% static "website/assets/img/contact.jpg" %}" alt=""  width="500" height="350">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0"  data-aos="fade-left">
+            <span>
+              <i class="fas fa-map-marker-alt" style="color: red; font-size: 24px;"></i>
+              FeWork, Darpan Apartment,
+              <br> beside Unicorn Apple Store, 
+              <br> Parihaar Chowk, Aundh,
+              <br> Pune - 411007, <br>Maharashtra 
+            </span>
+            <br><br>
+            <div>
+              <h3>Get In Touch</h3>
+              <h5>
+                <span>
+                  <i class="bi bi-telephone"></i>
+                  Phone:<br> (+91) 882-5171-328
+                </span>
+              </h5>
+              <h5>
+                <span>
+                  <i class="bi bi-envelope"></i>
+                  E-mail: <a href="mailto:shubhamsk8989338@gmail.com">shubhamsk8989338@gmail.com</a>
+                </span>
+              </h5>
+            </div>           
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+  </main><!-- End #main -->
+  {% endblock content %}

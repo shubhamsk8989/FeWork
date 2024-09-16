@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+    <style>
+        body{
+        background-image: url('{% static "website/assets/img/background.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover; 
+    }
+    </style>
+
+    <h5 style="margin-left: 20px; margin-top: 20px;">My Uploaded Post</h5>
+    <ul style="margin-top: 50px; margin-bottom: 320px; margin-right: 600px; color: bisque; background-color: azure;">
+        {% for job in jobs %}
+        <li style="border: 1px solid; height: 120px;">
+            <a href="{% url 'employer:viewApplicants' employerid=employer.id jobid=job.id %}"  style="color: brown;">
+            <b>{{job.job_heading}}</b></a>
+            <br><br> <span style="color: rgba(0, 0, 0, 0.800);"> Domain: {{job.job_domain| title}}  |  Est. Budget: {{job.est_budget}} </span>
+            <br> <span style="color: rgba(0, 0, 0, 0.600);"> Listing Date: {{job.upload_date}}  |  Due Date: {{job.due_date}}</span>
+            </a>
+    
+        </li>
+        {% endfor %}
+        </ul>
+
+    {% endblock content %}
+    

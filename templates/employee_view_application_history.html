@@ -1,0 +1,26 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+    <style>
+        body{
+            background-image: url('{% static "website/assets/img/background.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+    </style>
+
+      <h5 style="margin-left: 20px; margin-top: 20px;">Applications Status</h5>
+      <ul style="margin-top: 50px; margin-bottom: 200px; margin-right: 700px; background-color: azure;">
+        {% for job in myApplications %}
+            <li style="border: 1px solid; height: 80px; color: blanchedalmond;">
+                <span style="color: black;"> {{job.job_id.job_heading | title}}</span>
+                <br>
+                <span style="color: black;"> Status: <b>{{job.status | title}}</b></span>
+            </li>
+
+
+        {% endfor %}
+
+     </ul>
+     {% endblock content %}

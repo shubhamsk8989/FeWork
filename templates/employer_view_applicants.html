@@ -1,0 +1,55 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+   <style>
+        body{
+            background-image: url('{% static "website/assets/img/background.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+    </style>
+
+    <div style="margin-left: 32px; margin-top: 20px;">
+        <h5>{{job.job_heading}}</h5>
+    </div>
+
+    <div style="margin-left: 32px; margin-top: 10px;">
+        <b>Applicant's Status</b>
+    </div>
+    
+    <ul style="margin-top: 20px; margin-bottom: 320px;">
+    {% for application in applications %}
+        <li style="margin-top: 20px; margin-bottom: 20px; margin-right: 700px; color: bisque; background-color: azure;">
+        <span style="color: black;">
+            Applicant's Name: <b>{{application.employee_id.get_name}}</b><br>
+            Project Completion in {{application.expected_delivey}}
+            <a href="{% url 'employer:view_application_details' employeeid=application.employee_id.id jobid=application.job_id.id %}" >view more</a>
+            <br>
+            <b>Budget:</b> {{application.est_budget}}
+        </span>
+
+
+        {% if application.status == 'Pending' %}
+        <form method="POST" action="{% url 'employer:select_form' employeeid=application.employee_id.id jobid=application.job_id.id  %}"onsubmit="return confirmselect()">
+            {% csrf_token %}
+            <button type="submit">
+                 Select
+            </button>
+        </form>
+        <form method="POST" action="{% url 'employer:reject_form' employeeid=application.employee_id.id jobid=application.job_id.id %}"onsubmit="return confirmselect()">
+            {% csrf_token %}
+            <button type="submit">
+                 Reject
+            </button>
+        </form>
+
+        {% else %}
+          <br><b style="color: black;">Status:</b> <b style="color: brown;">{{application.status | title}}</b>
+        {% endif %} 
+
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% endblock content %}

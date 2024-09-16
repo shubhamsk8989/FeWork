@@ -1,0 +1,39 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+    <style>
+        body{
+            background-image: url('{% static "website/assets/img/background.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+    </style>
+    
+      <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="row content">
+            <div class="col-lg-6">
+                <h5>Hello, {{employee.get_name| title}}</h5>
+            </div>
+            <div class="col-lg-6">
+                <a href="{% url 'employee:view_application_history' employeeid=employee.id %}" style="color: brown; margin-left: 320px;">Application History</a>
+                &nbsp;&nbsp;&nbsp;<a href="{% url 'website:signin' %}" style="color: brown;">Logout</a>
+            </div>
+        </div>
+      </div>
+
+    <ul style="margin-top: 50px; margin-bottom: 320px; margin-right: 600px; color: bisque; background-color: azure;">
+    {% for jobs in job_post %}
+    <li style="border: 1px solid; height: 120px;">
+        <a href="{% url 'employee:about_job' user=user jobid=jobs.id %}" style="color: black; text-decoration: none;">
+        <b>{{jobs.job_heading| title}}</b> 
+        <br> <span style="color: rgba(0, 0, 0, 0.750);">Company: {{jobs.employer_id.Company_name| title}}</span> 
+        <br> <span style="color: rgba(0, 0, 0, 0.500);"> Domain: {{jobs.job_domain| title}}  |  Est. Budget: {{jobs.est_budget}} </span>
+        <br> <span style="color: rgba(0, 0, 0, 0.500);"> Listing Date: {{jobs.upload_date}}  |  Due Date: {{jobs.due_date}}</span>
+        </a>
+
+    </li>
+    {% endfor %}
+    </ul>
+    {% endblock content %}
+    

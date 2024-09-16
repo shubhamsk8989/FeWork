@@ -1,0 +1,67 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+   <style>
+    body{
+        background-image: url('{% static "website/assets/img/background.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover; 
+        /* background-position: center; */
+    }
+    button{
+        color: white;
+        background-color: green;
+        text-align: center;
+    }
+    #signintitle{
+        margin-top: 100px;
+        margin-left: 200px; 
+    }
+    #signinform{
+        text-align: center;
+        margin-top: 20px;
+        margin-left: 200px;
+    }
+    #signinpic{
+        margin-top: 100px;
+        margin-left: 50px;
+    }
+    a.custom-underline {
+       text-decoration: underline; 
+       text-decoration-color: rgb(165, 42, 42); /* Customize the underline color */
+       text-decoration-style: solid; /* Optional: style of the underline */
+    }
+  </style>
+
+  <table style="margin-bottom: 80px;">
+        <tr>
+            <td>
+                <div id="signinpic">
+                    <img src="{% static "website/assets/img/signinside.jpg" %}" alt="" width="600" height="400">
+                </div>
+            </td>
+            <td >
+                <div id="signintitle">
+                    <h1 style="text-align: center; color: aqua;" >Sign In</h1>
+                </div>
+                <br>
+                <div id="signinform">
+                    <form method="post" action="{% url 'website:signin' %}">
+                        {% csrf_token %}
+                        <b style="color: black;">Username</b> {{ form.username}}
+                        <br>
+                        <br>
+                        <b style="color: black;">Password</b> {{form.password}}
+                        <br>
+                        <br>
+                        <button type="submit" id="submit_button"><b>SIGN IN</b> </button>
+                      </form>
+                        <p style="color: orange;"">Don't have an account:</p>
+                        <a href="{% url 'website:employee_signup' %} " class="custom-underline"> <p style="color: brown;">Employee Signup</p></a>
+                        <a href="{% url 'website:employer_signup' %} " class="custom-underline"><p style="color: brown;">Employer Signup</p></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    {% endblock content %}

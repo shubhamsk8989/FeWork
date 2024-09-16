@@ -1,0 +1,148 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+    <style>
+        body{
+            background-image: url('{% static "website/assets/img/background.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+          #emp_button{
+            color: white;
+            background-color: green;
+            text-align: center;
+            margin-left: 50px;
+        }
+        #employeesignuppic{
+            margin-top: 100px;
+            margin-left: 50px;
+        }
+        #employeesignuptitle{
+            margin-top: 100px;
+            margin-left: 50px; 
+        }
+        #employeesignupform{
+            margin-top: 20px;
+            margin-left: 50px;
+        }
+
+    </style>
+
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-6">
+                <div id="employeesignuppic" style="margin-left: 10px;">
+                    <img src="{% static "website/assets/img/employeesignup.jpg" %}" alt="" width="600" height="400">
+                </div>
+            </div>
+            <div class="col-6">
+                <div id="employeesignuptitle">
+                    <h1 style="text-align: center; color: aqua;">Employee SignUp</h1>
+                </div>
+                <div id="employeesignupform">
+                   <form method="POST" action="{% url 'website:employee_signup' %}">
+                    {% csrf_token %}
+                    <div class="container" style="margin-left: 0px; margin-top: 20px;">
+                        <div class="row m-2" >
+                            <div class="col-6">
+                                <b style="color: black;">First Name</b>
+                            </div>
+                            <div class="col-4">
+                                {{ userform.first_name }}
+                
+                            </div>
+                        </div>
+                
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Last name</b>
+                            </div>
+                            <div class="col-4">
+                                {{ userform.last_name }}
+                
+                            </div>
+                        </div>
+                
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Username</b>
+                            </div>
+                            <div class="col-4">
+                                {{ userform.username }}
+                            </div>
+                        </div>
+                
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Contact No.</b>
+                            </div>
+                            <div class="col-4">
+                                {{ employeeform.phone_number }}
+                            </div>
+                        </div>
+                
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Email Address</b>
+                            </div>
+                            <div class="col-4">
+                                {{ userform.email }}
+                
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Interested Domain</b>
+                            </div>
+                            <div class="col-4">
+                                {{ employeeform.interested_domain }}
+                
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Current Address</b>
+                            </div>
+                            <div class="col-4">
+                                {{ employeeform.city }}
+                
+                            </div>
+                        </div>
+                        
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <b style="color: black;">Password</b>
+                            </div>
+                            <div class="col-4">
+                                {{ userform.password }}
+                
+                            </div>
+                        </div>
+                       
+                        
+                        <div class="row m-2">
+                            <div class="col-4">
+                                <div class="container-fluid" id="ttab4" style="padding-top: 15px;">
+                                    <h2 class="cctext" style="font-size: 15px;">
+                                        <button type="submit" id="emp_button"><b>SUBMIT</b> </button> 
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <a href="{% url 'website:signin' %}" style="text-decoration: none;">
+                                    <div class="container-fluid" id="ttab3" style="padding-left: 40px; padding-top: 15px;">
+                                        <h2 class="cctext" style="font-size: 15px;">
+                                            <button type="back" id="emp_button" style="margin-left: 35px;"><b>BACK</b> </button>                                    </h2>
+                                    </div>
+                                </a>
+                            </div>              
+                        </div>
+                    </div>   
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   {% endblock content %}

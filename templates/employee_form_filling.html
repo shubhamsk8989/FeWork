@@ -1,0 +1,79 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+
+   <style>
+    body{
+        background-image: url('{% static "website/assets/img/background.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #sub_button{
+            color: white;
+            background-color: green;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 110px;
+    }
+    #back_button{
+        background-color: green;
+        text-align: center;
+        margin-left: 55px;
+    }
+    </style>
+
+    <h5 style="margin-left: 70px; margin-top: 30px;">{{job.job_heading | title}}</h5>
+    
+        <div class="container">
+            <div class="row" style="margin-top: 80px;">
+
+                <div class="col-6">
+                    <img src="{% static "website/assets/img/pro_app_form_pic.png" %}" width="100%" height="60%" alt="">
+                </div>
+                
+                <div class="col-6">
+                    <form method="POST" action="{% url 'employee:form_filling' user=user jobid=jobid %}"  enctype="multipart/form-data" style="margin-bottom: 220px;">
+                        {% csrf_token %}
+                        <div class="row m-2">
+                            <div class="col-5">
+                                Delivery time in weeks
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="expected_delivery">
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-5">
+                                Estimated budget
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="est_budget">
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-5">
+                               Resume
+                            </div>
+                            <div class="col-4">
+                                <input type="file" name="resume" >
+                            </div>
+                        </div>
+                        <div class="row m-2" >
+                            <div class="col-5">
+                                Any message for Employer (Optional)
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="message" >
+                            </div>
+                        </div>
+                        <button type="submit" id="sub_button">SUBMIT</button>
+                        <button type="back" id="back_button">
+                            <a href="{% url 'employee:about_job' user=user jobid=jobid %}" style="color: white; text-decoration: none;">BACK</a>
+                        </button>
+                    </form>
+                </div> 
+            </div>
+        </div>  
+
+{% endblock content %}

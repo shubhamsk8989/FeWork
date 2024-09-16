@@ -1,0 +1,151 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .row .col-sm-3 .card-body{
+        box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        border-radius: 5%;
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transition for smoother effect */
+        border: none;
+
+    }   
+    .row .col-sm-3 .card-body:hover {
+        box-shadow: 0 25px 25px 0 rgba(0,0,0,0.3), 0 8px 25px 0 rgba(0,0,0,0.29); /* Change box-shadow on hover */
+        transform: scale(1.02);
+    }
+    .blood{
+        width: 100%;
+        height: 100px;
+    }
+    .row .col-sm-3{
+        height: 200px;
+    }
+    .container{
+        margin-top: 5%;
+
+    }
+    .card{
+        border: none;
+    }
+    h2,.count{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: 500;
+        text-shadow: 2px 2px rgb(217, 215, 215);
+    }
+    
+</style>
+<body>
+<div class="container" align="center">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card bg">
+                <div class="card-body" >
+                    <div class="blood" >
+                        <h2>Jobs created </h2>
+                </div>
+                <div class="count" id="count1" data-count="{{ job_count }}">
+                   0
+                </div>                            
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-3">
+            <div class="card bg">
+            <div class="card-body">
+                <div class="blood" >
+                    <h2>Current jobs </h2>
+                </div>
+                <div class="count" id="count1" data-count="{{current_job_count}}">
+                    
+                    0
+                </div>                            
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card bg">
+              <div class="card-body">
+                  <div class="blood">
+                      <h2>No. of Job got to women </h2>
+                  </div>
+                  <div class="count" id="count1" data-count="{{selection_count}}">
+                      0
+                  </div>                            
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-sm-3">
+                <div class="card bg">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>No.of registered Employer </h2>
+                        </div>
+                        <div class="count" id="count1" data-count="{{employer_count}}">
+                        0
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+
+    
+            <div class="col-sm-3">
+                <div class="card bg">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>No.of registered women </h2>
+                        </div>
+                        <div class="count" id="count1" data-count="{{employee_count}}">
+                        0
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>Total job applications </h2>
+                        </div>
+                        <div class="count" id="count1" data-count="{{application_count}}">
+                            0
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+      </div>
+  
+      
+        
+</div>      
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all elements with the 'count' class
+        var counts = document.querySelectorAll('.count');
+        
+        // Loop through each count element
+        counts.forEach(function(count) {
+            // Get the target count from the data-count attribute
+            var target = parseInt(count.getAttribute('data-count'));
+            var current = 0;
+
+            // Set an interval to increment the count
+            var timer = setInterval(function() {
+                // Increment the current count
+                current++;
+                // Update the text content of the count element
+                count.innerText = current;
+                // If the current count equals the target count, clear the interval
+                if (current === target) {
+                    clearInterval(timer);
+                }
+            }, 50); // Adjust the interval duration for smoother animation
+        });
+    });
+</script>
+
+{% endblock content %}

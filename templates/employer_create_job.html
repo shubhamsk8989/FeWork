@@ -1,0 +1,101 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+   <style>
+    body{
+        background-image: url('{% static "website/assets/img/background.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover; 
+    }
+    #post_btn{
+            color: white;
+            background-color: green;
+            text-align: center;
+            margin-left: 90px;
+            margin-top: 20px;
+    }
+    #back_btn{
+            color: white;
+            background-color: green;
+            text-align: center; 
+            margin-left: 80px;
+            margin-top: 20px;
+    }
+    </style>
+
+
+   <div class="container" style="margin-top: 80px;">
+        <div class="row">
+            <div class="col-6" style="margin-top: 20px;">
+                <form method="POST" action="{% url 'employer:create_job' %}">
+                    {% csrf_token %}       
+                        <div class="row m-2" >
+                            <div class="col-5">
+                                Project Title
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="job_heading">
+                            </div>
+                        </div>
+            
+                        <div class="row m-2" >
+                            <div class="col-5">
+                                Project Description
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="job_description">
+                            </div>
+                        </div>
+            
+                        <div class="row m-2" >
+                            <div class="col-5">
+                                Project Domain
+                            </div>
+                            <div class="col-4">
+                                <select name="job_domain">
+                                    <option>
+                                        Web Development
+                                    </option>
+                                    <option>
+                                        Android
+                                    </option>
+                                    <option>
+                                       Testing
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+            
+                        <div class="row m-2">
+                            <div class="col-5">
+                               Due Date
+                            </div>
+                            <div class="col-4">
+                                <input type="date" name="due_date" >
+                            </div>
+                        </div>
+            
+                        <div class="row m-2" >
+                            <div class="col-5">
+                                Estimated Budget
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="est_budget" >
+                            </div>
+                        </div>
+
+                        <button type="submit" id="post_btn" class="btn btn-success">POST</button>
+                        <button id="back_btn" class="btn btn-success">
+                            <a href="{% url 'employer:employer_home' %}" style="color: white; text-decoration: none;">BACK</a>
+                        </button>
+                </form>
+            </div>
+
+            <div class="col-6" style="margin-bottom: 200px;">
+                <img src="{% static "website/assets/img/job_creation.jpg" %}" alt="" width="500px" height="300px">
+            </div>
+        </div>
+   </div>
+
+{% endblock content %}

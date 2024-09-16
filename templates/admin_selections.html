@@ -1,0 +1,66 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    #div1,#div2{
+        width: 70%;
+        margin-left: 1%;
+    }
+    .employee{
+    background-color: rgb(246, 247, 248);
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  */
+    height: 50px;
+    margin-top: 5px;
+    
+  }
+  .employee1{
+    background-color: rgb(246, 247, 248);
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  */
+    height: 40px;
+    margin-top: 5px;
+    
+  }
+  .employee:hover{
+    background-color: rgb(225, 228, 231);
+
+  }
+</style>
+
+
+
+<div class="container" id="div1" style="margin-top: 1%; background-color: rgb(211, 230, 247); "> 
+    <b>womens got a opportunity to work</b>
+</div>
+<div class="container" id="div2">
+    <div class="row employee1" style="font-weight: 600;" >
+        <div class="col-2">
+            Application ID
+        </div>
+        <div class="col-5">
+            Applicant detail
+        </div>
+        <div class="col-5">
+            Employer detail
+        </div>
+        
+      
+    </div> 
+    {% for form in selected %}
+      
+        <div class="row employee"  >
+            <div class="col-2">
+                {{form.id}}
+            </div>
+            <div class="col-5">
+                {{form.employee_id.get_name}}<br>
+            </div>
+            <div class="col-5">
+                {{form.job_id.employer_id.get_name}}<br>
+                company:{{form.job_id.employer_id.Company_name}}
+            </div>
+            
+        </div>  
+    {% endfor %} 
+  </div>
+{% endblock content %}

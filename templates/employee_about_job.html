@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+   <style>
+    body{
+        background-image: url('{% static "website/assets/img/background.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover; 
+    }
+    </style>
+
+        <h5 style="margin-left: 30px; margin-top: 20px;">{{job.job_heading | title}}</h5>
+
+    <ul style="text-align: justify; margin-right: 30px; list-style-type: none;">
+        <li>
+        <b>Project description </b>
+        <br>
+        {{job_post.job_description | title}}
+        </li>
+        <br>
+        <li>
+            <b>Budget:</b>
+            {{job_post.est_budget}}
+        </li>
+        <li>
+            <b>Company:</b>
+            {{job_post.employer_id.Company_name | title}}
+        </li>
+    </ul>
+    {% if filled %}
+    <p style="color: brown; margin-left: 30px;">You have already applied for this job</p>
+
+    {% else %}
+
+    <span style="margin-left: 30px;">
+        <a href="{% url 'employee:form_filling' user=user jobid=jobid %}" style="text-decoration: none; width: 80px;"> 
+            <button type="button" class="btn btn-success" style="margin-bottom: 260px;" >Apply</button> 
+        </a>
+    </span>
+
+    {% endif %}
+
+    {% endblock content %}

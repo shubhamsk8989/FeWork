@@ -1,0 +1,73 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container" style="width: 50%;">
+        <form method="post" action="{% url 'website:edit_employee' employee_id=employee_details.id %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                   First Name 
+                </div>
+                <div class="col-6">
+                    <input type="text" name="first_name" value="{{employee_details.user.first_name}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                   Last Name 
+                </div>
+                <div class="col-6">
+                    <input type="text" name="last_name" value="{{employee_details.user.last_name}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                   UserName 
+                </div>
+                <div class="col-6">
+                    <input type="text" name="username" value="{{employee_details.user}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                   phone number 
+                </div>
+                <div class="col-6">
+                    <input type="text" name="phone_number" value="{{employee_details.phone_number}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                   Email Address
+                </div>
+                <div class="col-6">
+                    <input type="text" name="email" value="{{employee_details.email}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    Interested Domain
+                </div>
+                <div class="col-6">
+                    <input type="text" name="interested_domain" value="{{employee_details.interested_domain}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    Current Address
+                </div>
+                <div class="col-6">
+                    <input type="text" name="city" value="{{employee_details.city}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit">Save changes</button>
+                </div>
+                <div class="col-6">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

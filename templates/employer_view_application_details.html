@@ -1,0 +1,53 @@
+{% extends 'navbar.html' %}
+{% load static  %}
+    
+   {% block content %}
+
+    {% for application in applications %}
+
+    <div style="margin-left: 32px; margin-top: 20px;">
+        <h5>{{job.job_heading}}</h5>
+    </div>
+
+    <div style="margin-left: 32px; margin-top: 20px;">
+        <b>Applicant's Details</b>
+    </div>
+
+    <div style="margin-left: 32px; margin-bottom: 230px; margin-top: 10px;">
+        Applicant's Name: {{application.employee_id.get_name}} <br>
+        Email Address: {{application.employee_id.email}} <br> 
+        Contact No.: {{application.employee_id.phone_number}} <br>
+        Form Fill Date: {{application.formfilling_date}} <br>
+        Expected Delivery Date: {{application.expected_delivey}} <br>
+        Estimated Budget: {{application.est_budget}} <br>
+        Message (If Any): {{application.message}} <br>
+        <br>
+
+        Resume:
+        <button class="btn btn-success" style="background-color: green; ">
+            <a href="{{ application.resume.url }}" target="_blank" style="color: white; text-decoration: none;">Download</a>
+        </button><br>
+
+        {% if application.status == 'pending' %}
+        <form method="POST" action="{% url 'employer:select_form' employeeid=application.employee_id.id jobid=application.job_id.id  %}"onsubmit="return confirmselect()">
+            {% csrf_token %}
+            <button type="submit">
+                 Select
+            </button>
+        </form>
+        <form method="POST" action="{% url 'employer:reject_form' employeeid=application.employee_id.id jobid=application.job_id.id %}"onsubmit="return confirmselect()">
+            {% csrf_token %}
+            <button type="submit">
+                 Reject
+            </button>
+        </form>
+
+        {% else %}
+        <br><b style="color: black;">Status:</b> <b style="color: brown;">{{application.status | title}}</b>
+        {% endif %}
+
+        </li>
+    {% endfor %}
+    </div>
+
+    {% endblock content %}
